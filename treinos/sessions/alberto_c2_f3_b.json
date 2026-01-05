@@ -1,0 +1,380 @@
+{
+  "schemaVersion": 1,
+  "id": "alberto_c2_f3_b",
+  "program": "alberto",
+  "cycle": "Ciclo II",
+  "phase": "Fase 3",
+  "name": "Treino B — Cadeia Posterior",
+  "notes": [
+    "Observações: Ombro sem sintomas.",
+    "Warm-up: fazer a tarefa da pasta “MOBILITY” (conforme recomendações do documento).",
+    "Observação: EVITAR SINTOMAS DE DESCONFORTO NOS OMBROS."
+  ],
+  "progressions": {
+    "9": {
+      "star": {
+        "sets": 4,
+        "reps": 6
+      },
+      "doubleStar": {
+        "sets": 3,
+        "reps": 16
+      }
+    },
+    "10": {
+      "star": {
+        "sets": 4,
+        "reps": 6
+      },
+      "doubleStar": {
+        "sets": 3,
+        "reps": 16
+      }
+    },
+    "11": {
+      "star": {
+        "sets": 5,
+        "reps": 6
+      },
+      "doubleStar": {
+        "sets": 3,
+        "reps": 18
+      }
+    },
+    "12": {
+      "star": {
+        "sets": 2,
+        "reps": 6
+      },
+      "doubleStar": {
+        "sets": 3,
+        "reps": 18
+      }
+    },
+    "13": {
+      "star": {
+        "sets": 5,
+        "reps": 7
+      },
+      "doubleStar": {
+        "sets": 3,
+        "reps": 20
+      }
+    },
+    "14": {
+      "star": {
+        "sets": 5,
+        "reps": 7
+      },
+      "doubleStar": {
+        "sets": 3,
+        "reps": 20
+      }
+    },
+    "15": {
+      "star": {
+        "sets": 5,
+        "reps": 7
+      },
+      "doubleStar": {
+        "sets": 3,
+        "reps": 20
+      }
+    },
+    "16": {
+      "star": {
+        "sets": 2,
+        "reps": 7
+      },
+      "doubleStar": {
+        "sets": 2,
+        "reps": 20
+      }
+    }
+  },
+  "blocks": [
+    {
+      "type": "warmup",
+      "name": "Warm-up",
+      "items": [
+        {
+          "exerciseName": "Mobility (pasta MOBILITY)",
+          "instruction": "Fazer a tarefa apresentada da pasta “MOBILITY”; recomendações estão no documento.",
+          "exerciseId": "ALB-0001"
+        }
+      ]
+    },
+    {
+      "type": "biset",
+      "name": "BI SET 1",
+      "rest_between_exercises_sec": 0,
+      "items": [
+        {
+          "exerciseName": "FLEXÃO NÓRDICA",
+          "sets": {
+            "type": "progression",
+            "key": "star"
+          },
+          "target": {
+            "scheme": "text",
+            "text": "*"
+          },
+          "load": {
+            "type": "bodyweight"
+          },
+          "equipment": "ESPALDAR",
+          "tempo": "2-0-2-0",
+          "exerciseId": "ALB-0013"
+        },
+        {
+          "exerciseName": "SUBIR E DESCER SIDE ONE LEG",
+          "sets": {
+            "type": "progression",
+            "key": "doubleStar"
+          },
+          "target": {
+            "scheme": "text",
+            "text": "* *"
+          },
+          "load": {
+            "type": "fixed",
+            "value": 5.0,
+            "unit": "kg"
+          },
+          "equipment": "CAIXA E ANILHA",
+          "tempo": "2-0-2-0",
+          "exerciseId": "ALB-0014"
+        }
+      ]
+    },
+    {
+      "type": "biset",
+      "name": "BI SET 2",
+      "rest_between_exercises_sec": 0,
+      "items": [
+        {
+          "exerciseName": "STEP UP RACK",
+          "sets": {
+            "type": "progression",
+            "key": "star"
+          },
+          "target": {
+            "scheme": "text",
+            "text": "*"
+          },
+          "load": {
+            "type": "fixed",
+            "value": 10.0,
+            "unit": "kg",
+            "per": "side"
+          },
+          "equipment": "CAIXA E HALTERES PRONTO",
+          "tempo": "2-0-2-0",
+          "exerciseId": "ALB-0015"
+        },
+        {
+          "exerciseName": "FLEXÃO DE JOELHOS UNILATERAL NA BOLA SUIÇA",
+          "sets": {
+            "type": "progression",
+            "key": "star"
+          },
+          "target": {
+            "scheme": "text",
+            "text": "*"
+          },
+          "load": {
+            "type": "bodyweight"
+          },
+          "equipment": "BOLA SUIÇA E COLCHONETE",
+          "tempo": "2-0-2-0",
+          "exerciseId": "ALB-0016"
+        }
+      ]
+    },
+    {
+      "type": "triset",
+      "name": "TRI SET 1",
+      "rest_between_exercises_sec": 0,
+      "items": [
+        {
+          "exerciseName": "ABD VELA",
+          "sets": {
+            "type": "progression",
+            "key": "star"
+          },
+          "target": {
+            "scheme": "text",
+            "text": "*"
+          },
+          "load": {
+            "type": "bodyweight"
+          },
+          "equipment": "ESPALDAR",
+          "tempo": "2-0-2-0",
+          "exerciseId": "ALB-0017"
+        },
+        {
+          "exerciseName": "ROCKING ON STOMACH",
+          "sets": {
+            "type": "progression",
+            "key": "star"
+          },
+          "target": {
+            "scheme": "text",
+            "text": "*"
+          },
+          "load": {
+            "type": "bodyweight"
+          },
+          "equipment": "SOLO",
+          "tempo": "2-0-2-0",
+          "exerciseId": "ALB-0018"
+        },
+        {
+          "exerciseName": "AGACHAMENTO BULGARO - PESO DO MESMO LADO",
+          "sets": {
+            "type": "progression",
+            "key": "doubleStar"
+          },
+          "target": {
+            "scheme": "text",
+            "text": "**"
+          },
+          "load": {
+            "type": "range",
+            "min": 25.0,
+            "max": 30.0,
+            "unit": "kg"
+          },
+          "equipment": "HALTER MONTADO",
+          "tempo": "2-0-2-0",
+          "exerciseId": "ALB-0019"
+        }
+      ]
+    },
+    {
+      "type": "amrap",
+      "name": "Desafio 1 — AMRAP 10 min",
+      "duration_sec": 600,
+      "post_rest_sec": 120,
+      "items": [
+        {
+          "exerciseName": "FRONT RACK LUNGE",
+          "sets": {
+            "type": "text",
+            "text": "MAXIMA"
+          },
+          "target": {
+            "scheme": "reps",
+            "reps": 16
+          },
+          "load": {
+            "type": "fixed",
+            "value": 15.0,
+            "unit": "kg",
+            "per": "side"
+          },
+          "equipment": "BARRA LONGA E ANILHAS",
+          "tempo": "2-0-2-0",
+          "exerciseId": "ALB-0020"
+        },
+        {
+          "exerciseName": "T2B",
+          "target": {
+            "scheme": "reps",
+            "reps": 12
+          },
+          "load": {
+            "type": "bodyweight"
+          },
+          "equipment": "BARRA FIXA",
+          "tempo": "2-0-2-0",
+          "exerciseId": "ALB-0021"
+        },
+        {
+          "exerciseName": "HIGH PULL PEGADA ARREMESSO",
+          "target": {
+            "scheme": "reps_range",
+            "min": 4,
+            "max": 6
+          },
+          "load": {
+            "type": "fixed",
+            "value": 20.0,
+            "unit": "kg",
+            "per": "side"
+          },
+          "equipment": "BARRA LONGA E ANILHAS",
+          "tempo": "2-0-2-0",
+          "exerciseId": "ALB-0022"
+        }
+      ]
+    },
+    {
+      "type": "amrap",
+      "name": "Desafio 2 — AMRAP 10 min",
+      "duration_sec": 600,
+      "post_rest_sec": 120,
+      "items": [
+        {
+          "exerciseName": "TEASER ADAPTADO",
+          "sets": {
+            "type": "text",
+            "text": "MAXIMA"
+          },
+          "target": {
+            "scheme": "reps",
+            "reps": 15
+          },
+          "load": {
+            "type": "bodyweight"
+          },
+          "equipment": "SOLO",
+          "tempo": "2-0-2-0",
+          "exerciseId": "ALB-0023"
+        },
+        {
+          "exerciseName": "BOX JUMP",
+          "target": {
+            "scheme": "reps",
+            "reps": 20
+          },
+          "load": {
+            "type": "bodyweight"
+          },
+          "equipment": "BOX",
+          "tempo": "2-0-2-0",
+          "exerciseId": "ALB-0024"
+        },
+        {
+          "exerciseName": "LEVANTAMENTO TERRA",
+          "target": {
+            "scheme": "reps",
+            "reps": 12
+          },
+          "load": {
+            "type": "fixed",
+            "value": 40.0,
+            "unit": "kg"
+          },
+          "equipment": "BARRA LONGA E ANILHAS",
+          "tempo": "2-0-2-0",
+          "exerciseId": "ALB-0025"
+        },
+        {
+          "exerciseName": "RUSSIAN TWIST STANDE",
+          "target": {
+            "scheme": "reps",
+            "reps": 30
+          },
+          "load": {
+            "type": "bodyweight"
+          },
+          "equipment": "BARRA LONGA E ANILHAS",
+          "tempo": "2-0-2-0",
+          "exerciseId": "ALB-0026"
+        }
+      ]
+    }
+  ]
+}

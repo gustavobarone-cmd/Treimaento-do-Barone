@@ -1,0 +1,66 @@
+{
+  "version": "1.0",
+  "updatedAt": "2026-01-04",
+  "stations": [
+    {
+      "id": "JUD-0001",
+      "name": "Uchi-komi (entrada)"
+    },
+    {
+      "id": "JUD-0002",
+      "name": "Pegada na gola/manga (rápido)"
+    },
+    {
+      "id": "JUD-0003",
+      "name": "Sprawl"
+    },
+    {
+      "id": "JUD-0004",
+      "name": "Burpee"
+    },
+    {
+      "id": "JUD-0005",
+      "name": "Corrida estacionária (joelho alto)"
+    },
+    {
+      "id": "JUD-0006",
+      "name": "Saltos laterais"
+    },
+    {
+      "id": "JUD-0007",
+      "name": "Agachamento"
+    },
+    {
+      "id": "JUD-0008",
+      "name": "Flexão de braço"
+    },
+    {
+      "id": "JUD-0009",
+      "name": "Prancha"
+    },
+    {
+      "id": "JUD-0010",
+      "name": "Pular corda"
+    },
+    {
+      "id": "JUD-0011",
+      "name": "Escalador (mountain climber)"
+    },
+    {
+      "id": "JUD-0012",
+      "name": "Abdominal (canivete)"
+    },
+    {
+      "id": "JUD-0013",
+      "name": "Sombra de luta (movimentação)"
+    },
+    {
+      "id": "JUD-0014",
+      "name": "Rope pull (simulado)"
+    },
+    {
+      "id": "JUD-0015",
+      "name": "Kuzushi (puxar/empurrar)"
+    }
+  ]
+}

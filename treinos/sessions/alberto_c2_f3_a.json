@@ -1,0 +1,332 @@
+{
+  "schemaVersion": 1,
+  "id": "alberto_c2_f3_a",
+  "program": "alberto",
+  "cycle": "Ciclo II",
+  "phase": "Fase 3",
+  "name": "Treino A — Cadeia Anterior",
+  "notes": [
+    "Observações: Ombro sem sintomas.",
+    "Warm-up: fazer a tarefa da pasta “MOBILITY” (conforme recomendações do documento).",
+    "Observação: EVITAR SINTOMAS DE DESCONFORTO NOS OMBROS."
+  ],
+  "progressions": {
+    "9": {
+      "star": {
+        "sets": 4,
+        "reps": 6
+      },
+      "doubleStar": {
+        "sets": 3,
+        "reps": 16
+      }
+    },
+    "10": {
+      "star": {
+        "sets": 4,
+        "reps": 6
+      },
+      "doubleStar": {
+        "sets": 3,
+        "reps": 16
+      }
+    },
+    "11": {
+      "star": {
+        "sets": 5,
+        "reps": 6
+      },
+      "doubleStar": {
+        "sets": 3,
+        "reps": 18
+      }
+    },
+    "12": {
+      "star": {
+        "sets": 2,
+        "reps": 6
+      },
+      "doubleStar": {
+        "sets": 3,
+        "reps": 18
+      }
+    },
+    "13": {
+      "star": {
+        "sets": 5,
+        "reps": 7
+      },
+      "doubleStar": {
+        "sets": 3,
+        "reps": 20
+      }
+    },
+    "14": {
+      "star": {
+        "sets": 5,
+        "reps": 7
+      },
+      "doubleStar": {
+        "sets": 3,
+        "reps": 20
+      }
+    },
+    "15": {
+      "star": {
+        "sets": 5,
+        "reps": 7
+      },
+      "doubleStar": {
+        "sets": 3,
+        "reps": 20
+      }
+    },
+    "16": {
+      "star": {
+        "sets": 2,
+        "reps": 7
+      },
+      "doubleStar": {
+        "sets": 2,
+        "reps": 20
+      }
+    }
+  },
+  "blocks": [
+    {
+      "type": "warmup",
+      "name": "Warm-up",
+      "items": [
+        {
+          "exerciseName": "Mobility (pasta MOBILITY)",
+          "instruction": "Fazer a tarefa apresentada da pasta “MOBILITY”; recomendações estão no documento.",
+          "exerciseId": "ALB-0001"
+        }
+      ]
+    },
+    {
+      "type": "triset",
+      "name": "TRI SET 1",
+      "rest_between_exercises_sec": 0,
+      "items": [
+        {
+          "exerciseName": "PRANCHA LATERAL",
+          "sets": {
+            "type": "fixed",
+            "sets": 4
+          },
+          "target": {
+            "scheme": "time",
+            "seconds": 20
+          },
+          "load": {
+            "type": "bodyweight"
+          },
+          "equipment": "COCHONETE",
+          "tempo": "ISOMETRIA",
+          "exerciseId": "ALB-0002"
+        },
+        {
+          "exerciseName": "PUSH PRESS",
+          "sets": {
+            "type": "progression",
+            "key": "star"
+          },
+          "target": {
+            "scheme": "text",
+            "text": "*"
+          },
+          "load": {
+            "type": "fixed",
+            "value": 15.0,
+            "unit": "kg"
+          },
+          "equipment": "BARRA LONGA E ANILHAS",
+          "tempo": "1-0-1-0",
+          "exerciseId": "ALB-0003"
+        },
+        {
+          "exerciseName": "ELEVAÇÃO LATERAL",
+          "sets": {
+            "type": "progression",
+            "key": "doubleStar"
+          },
+          "target": {
+            "scheme": "text",
+            "text": "**"
+          },
+          "load": {
+            "type": "range",
+            "min": 8.0,
+            "max": 10.0,
+            "unit": "kg",
+            "per": "side"
+          },
+          "equipment": "HALTER MONTADO",
+          "tempo": "1-0-1-0",
+          "exerciseId": "ALB-0004"
+        }
+      ]
+    },
+    {
+      "type": "triset",
+      "name": "TRI SET 2",
+      "rest_between_exercises_sec": 0,
+      "items": [
+        {
+          "exerciseName": "OVERHEAD LUNGE COM BARRA LONGA",
+          "sets": {
+            "type": "progression",
+            "key": "star"
+          },
+          "target": {
+            "scheme": "text",
+            "text": "*"
+          },
+          "load": {
+            "type": "fixed",
+            "value": 10.0,
+            "unit": "kg",
+            "per": "side"
+          },
+          "equipment": "BARRA LONGA E ANILHAS",
+          "tempo": "1-0-1-0",
+          "exerciseId": "ALB-0005"
+        },
+        {
+          "exerciseName": "WALKING WALL",
+          "sets": {
+            "type": "progression",
+            "key": "star"
+          },
+          "target": {
+            "scheme": "text",
+            "text": "*"
+          },
+          "load": {
+            "type": "bodyweight"
+          },
+          "equipment": "PAREDE",
+          "tempo": "1-0-1-0",
+          "exerciseId": "ALB-0006"
+        },
+        {
+          "exerciseName": "TRÍCEPS BANCO",
+          "sets": {
+            "type": "progression",
+            "key": "doubleStar"
+          },
+          "target": {
+            "scheme": "text",
+            "text": "**"
+          },
+          "load": {
+            "type": "bodyweight"
+          },
+          "equipment": "BARRA FIXA SOLO",
+          "tempo": "1-0-1-0",
+          "exerciseId": "ALB-0007"
+        }
+      ]
+    },
+    {
+      "type": "amrap",
+      "name": "Desafio 1 — AMRAP 10 min",
+      "duration_sec": 600,
+      "post_rest_sec": 120,
+      "items": [
+        {
+          "exerciseName": "BURPEE JUMP OVER THE BOX",
+          "sets": {
+            "type": "text",
+            "text": "MAXIMA"
+          },
+          "target": {
+            "scheme": "reps",
+            "reps": 12
+          },
+          "load": {
+            "type": "bodyweight"
+          },
+          "equipment": "BOX",
+          "tempo": "1-0-1-0",
+          "exerciseId": "ALB-0008"
+        },
+        {
+          "exerciseName": "SUPINO RETO",
+          "target": {
+            "scheme": "reps_range",
+            "min": 4,
+            "max": 6
+          },
+          "load": {
+            "type": "range",
+            "min": 42.0,
+            "max": 45.0,
+            "unit": "kg",
+            "per": "side"
+          },
+          "equipment": "BARRA LONGA E ANILHAS",
+          "tempo": "1-0-1-0",
+          "exerciseId": "ALB-0009"
+        }
+      ]
+    },
+    {
+      "type": "amrap",
+      "name": "Desafio 2 — AMRAP 10 min",
+      "duration_sec": 600,
+      "post_rest_sec": 120,
+      "items": [
+        {
+          "exerciseName": "THRUSTER",
+          "sets": {
+            "type": "text",
+            "text": "MAXIMA"
+          },
+          "target": {
+            "scheme": "reps",
+            "reps": 12
+          },
+          "load": {
+            "type": "fixed",
+            "value": 15.0,
+            "unit": "kg",
+            "per": "side"
+          },
+          "equipment": "BARRA LONGA E ANILHAS",
+          "tempo": "1-0-1-0",
+          "exerciseId": "ALB-0010"
+        },
+        {
+          "exerciseName": "FRONT SQUAT",
+          "target": {
+            "scheme": "reps",
+            "reps": 12
+          },
+          "load": {
+            "type": "fixed",
+            "value": 26.0,
+            "unit": "kg"
+          },
+          "equipment": "KETTLEBEL",
+          "tempo": "1-0-1-0",
+          "exerciseId": "ALB-0011"
+        },
+        {
+          "exerciseName": "ABD CANIVETE UNILATERAL ALTERNADO",
+          "target": {
+            "scheme": "reps",
+            "reps": 30
+          },
+          "load": {
+            "type": "bodyweight"
+          },
+          "equipment": "SOLO E COLCHONETE",
+          "tempo": "1-0-1-0",
+          "exerciseId": "ALB-0012"
+        }
+      ]
+    }
+  ]
+}

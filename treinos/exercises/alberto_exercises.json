@@ -1,0 +1,190 @@
+{
+  "schemaVersion": 1,
+  "owner": "Alberto",
+  "createdAt": "2026-01-02",
+  "nextExerciseNumber": 27,
+  "exercises": [
+    {
+      "id": "ALB-0001",
+      "name": "Mobility (pasta MOBILITY)",
+      "youtubeUrl": "",
+      "defaultUnit": "kg",
+      "aliases": []
+    },
+    {
+      "id": "ALB-0002",
+      "name": "PRANCHA LATERAL",
+      "youtubeUrl": "",
+      "defaultUnit": "bw",
+      "aliases": []
+    },
+    {
+      "id": "ALB-0003",
+      "name": "PUSH PRESS",
+      "youtubeUrl": "",
+      "defaultUnit": "kg",
+      "aliases": []
+    },
+    {
+      "id": "ALB-0004",
+      "name": "ELEVAÇÃO LATERAL",
+      "youtubeUrl": "",
+      "defaultUnit": "kg",
+      "aliases": []
+    },
+    {
+      "id": "ALB-0005",
+      "name": "OVERHEAD LUNGE COM BARRA LONGA",
+      "youtubeUrl": "",
+      "defaultUnit": "kg",
+      "aliases": []
+    },
+    {
+      "id": "ALB-0006",
+      "name": "WALKING WALL",
+      "youtubeUrl": "",
+      "defaultUnit": "bw",
+      "aliases": []
+    },
+    {
+      "id": "ALB-0007",
+      "name": "TRÍCEPS BANCO",
+      "youtubeUrl": "",
+      "defaultUnit": "bw",
+      "aliases": []
+    },
+    {
+      "id": "ALB-0008",
+      "name": "BURPEE JUMP OVER THE BOX",
+      "youtubeUrl": "",
+      "defaultUnit": "bw",
+      "aliases": []
+    },
+    {
+      "id": "ALB-0009",
+      "name": "SUPINO RETO",
+      "youtubeUrl": "",
+      "defaultUnit": "kg",
+      "aliases": []
+    },
+    {
+      "id": "ALB-0010",
+      "name": "THRUSTER",
+      "youtubeUrl": "",
+      "defaultUnit": "kg",
+      "aliases": []
+    },
+    {
+      "id": "ALB-0011",
+      "name": "FRONT SQUAT",
+      "youtubeUrl": "",
+      "defaultUnit": "kg",
+      "aliases": []
+    },
+    {
+      "id": "ALB-0012",
+      "name": "ABD CANIVETE UNILATERAL ALTERNADO",
+      "youtubeUrl": "",
+      "defaultUnit": "bw",
+      "aliases": []
+    },
+    {
+      "id": "ALB-0013",
+      "name": "FLEXÃO NÓRDICA",
+      "youtubeUrl": "",
+      "defaultUnit": "bw",
+      "aliases": []
+    },
+    {
+      "id": "ALB-0014",
+      "name": "SUBIR E DESCER SIDE ONE LEG",
+      "youtubeUrl": "",
+      "defaultUnit": "kg",
+      "aliases": []
+    },
+    {
+      "id": "ALB-0015",
+      "name": "STEP UP RACK",
+      "youtubeUrl": "",
+      "defaultUnit": "kg",
+      "aliases": []
+    },
+    {
+      "id": "ALB-0016",
+      "name": "FLEXÃO DE JOELHOS UNILATERAL NA BOLA SUIÇA",
+      "youtubeUrl": "",
+      "defaultUnit": "bw",
+      "aliases": []
+    },
+    {
+      "id": "ALB-0017",
+      "name": "ABD VELA",
+      "youtubeUrl": "",
+      "defaultUnit": "bw",
+      "aliases": []
+    },
+    {
+      "id": "ALB-0018",
+      "name": "ROCKING ON STOMACH",
+      "youtubeUrl": "",
+      "defaultUnit": "bw",
+      "aliases": []
+    },
+    {
+      "id": "ALB-0019",
+      "name": "AGACHAMENTO BULGARO - PESO DO MESMO LADO",
+      "youtubeUrl": "",
+      "defaultUnit": "kg",
+      "aliases": []
+    },
+    {
+      "id": "ALB-0020",
+      "name": "FRONT RACK LUNGE",
+      "youtubeUrl": "",
+      "defaultUnit": "kg",
+      "aliases": []
+    },
+    {
+      "id": "ALB-0021",
+      "name": "T2B",
+      "youtubeUrl": "",
+      "defaultUnit": "bw",
+      "aliases": []
+    },
+    {
+      "id": "ALB-0022",
+      "name": "HIGH PULL PEGADA ARREMESSO",
+      "youtubeUrl": "",
+      "defaultUnit": "kg",
+      "aliases": []
+    },
+    {
+      "id": "ALB-0023",
+      "name": "TEASER ADAPTADO",
+      "youtubeUrl": "",
+      "defaultUnit": "bw",
+      "aliases": []
+    },
+    {
+      "id": "ALB-0024",
+      "name": "BOX JUMP",
+      "youtubeUrl": "",
+      "defaultUnit": "bw",
+      "aliases": []
+    },
+    {
+      "id": "ALB-0025",
+      "name": "LEVANTAMENTO TERRA",
+      "youtubeUrl": "",
+      "defaultUnit": "kg",
+      "aliases": []
+    },
+    {
+      "id": "ALB-0026",
+      "name": "RUSSIAN TWIST STANDE",
+      "youtubeUrl": "",
+      "defaultUnit": "bw",
+      "aliases": []
+    }
+  ]
+}

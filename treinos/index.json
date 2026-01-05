@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-01-02T22:35:59",
+  "programs": {
+    "pre": [],
+    "pos": [],
+    "judo": [],
+    "alberto": [
+      {
+        "id": "alberto_c2_f3_a",
+        "name": "Treino A — Cadeia Anterior",
+        "cycle": "Ciclo II",
+        "phase": "Fase 3",
+        "path": "sessions/alberto_c2_f3_a.json",
+        "tags": [
+          "ciclo2",
+          "fase3",
+          "treinoA"
+        ]
+      },
+      {
+        "id": "alberto_c2_f3_b",
+        "name": "Treino B — Cadeia Posterior",
+        "cycle": "Ciclo II",
+        "phase": "Fase 3",
+        "path": "sessions/alberto_c2_f3_b.json",
+        "tags": [
+          "ciclo2",
+          "fase3",
+          "treinoB"
+        ]
+      }
+    ]
+  }
+}
