@@ -1,5 +1,6 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout        from './components/Layout';
+import Login         from './pages/Login';
 import StudentList   from './pages/students/StudentList';
 import StudentDetail from './pages/students/StudentDetail';
 import StudentForm   from './pages/students/StudentForm';
@@ -13,7 +14,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Navigate to="/students" replace />} />
+          <Route index element={<Login />} />
           <Route path="students"                                   element={<StudentList />}   />
           <Route path="students/new"                               element={<StudentForm />}   />
           <Route path="students/:id"                               element={<StudentDetail />} />

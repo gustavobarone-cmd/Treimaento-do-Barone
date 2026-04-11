@@ -30,16 +30,16 @@ router.get('/', (_req, res) => {
 
 // POST /api/students
 router.post('/', (req, res) => {
-  const { name, email, phone, notes, avatar_color } = req.body;
+  const { name, email, phone, notes, avatar_color, photo } = req.body;
   if (!name?.trim()) return res.status(400).json({ error: 'Nome é obrigatório' });
 
   const id  = randomUUID();
   const now = new Date().toISOString();
 
   db.prepare(`
-    INSERT INTO students (id, name, email, phone, notes, avatar_color, created_at, updated_at)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-  `).run(id, name.trim(), email || null, phone || null, notes || null, avatar_color || '#6366f1', now, now);
+    INSERT INTO students (id, name, email, phone, notes, avatar_color, photo, created_at, updated_at)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `).run(id, name.trim(), email || null, phone || null, notes || null, avatar_color || '#6366f1', photo || null, now, now);
 
   res.status(201).json(db.prepare('SELECT * FROM students WHERE id = ?').get(id));
 });
@@ -88,16 +88,16 @@ router.get('/:id', (req, res) => {
 
 // PUT /api/students/:id
 router.put('/:id', (req, res) => {
-  const { name, email, phone, notes, avatar_color } = req.body;
+  const { name, email, phone, notes, avatar_color, photo } = req.body;
   if (!db.prepare('SELECT id FROM students WHERE id = ?').get(req.params.id)) {
     return res.status(404).json({ error: 'Aluno não encontrado' });
   }
   if (!name?.trim()) return res.status(400).json({ error: 'Nome é obrigatório' });
 
   db.prepare(`
-    UPDATE students SET name=?, email=?, phone=?, notes=?, avatar_color=?, updated_at=?
+    UPDATE students SET name=?, email=?, phone=?, notes=?, avatar_color=?, photo=?, updated_at=?
     WHERE id=?
-  `).run(name.trim(), email || null, phone || null, notes || null, avatar_color || '#6366f1', new Date().toISOString(), req.params.id);
+  `).run(name.trim(), email || null, phone || null, notes || null, avatar_color || '#6366f1', photo ?? undefined, new Date().toISOString(), req.params.id);
 
   res.json(db.prepare('SELECT * FROM students WHERE id = ?').get(req.params.id));
 });

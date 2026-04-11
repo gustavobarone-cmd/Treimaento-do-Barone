@@ -45,8 +45,11 @@ export default function StudentList() {
         <div className="card">
           {students.map(s => (
             <Link key={s.id} to={`/students/${s.id}`} className="student-row">
-              <div className="avatar" style={{ background: s.avatar_color }}>
-                {initials(s.name)}
+              <div className="avatar" style={s.photo ? {} : { background: s.avatar_color }}>
+                {s.photo
+                  ? <img src={s.photo} alt={s.name} />
+                  : initials(s.name)
+                }
               </div>
               <div className="student-info">
                 <div className="student-name">{s.name}</div>

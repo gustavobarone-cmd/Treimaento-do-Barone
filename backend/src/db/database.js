@@ -122,5 +122,6 @@ ensureColumn('workouts', 'post_stretch_sec', 'INTEGER NOT NULL DEFAULT 0');
 ensureColumn('workout_block_items', 'youtube_url', 'TEXT');
 ensureColumn('workout_execution_logs', 'session_id', 'TEXT');
 ensureColumn('workout_execution_logs', 'session_started_at', 'TEXT');
+ensureColumn('students', 'photo', 'TEXT');
 
 module.exports = db;
