@@ -1,0 +1,16 @@
+# Variáveis de ambiente e segredos — NUNCA enviar para o Git
+.env
+
+# Dependências Python
+__pycache__/
+*.pyc
+
+# Node
+backend/node_modules/
+frontend/node_modules/
+
+# Banco de dados SQLite
+data/
+
+# Build
+frontend/dist/

@@ -641,58 +641,6 @@ function buildRegionOptions(){
   });
 }
 
-// ---------------- Data: Stretch bank ----------------
-async function loadStretchBank(){
-  const resp = await fetch("./stretches_bank_v1.json", { cache: "no-store" });
-  stretchBank = await resp.json();
-
-  const base = Array.isArray(stretchBank && stretchBank.items) ? stretchBank.items : [];
-  const custom = loadJson(STORAGE.STRETCH_CUSTOM, []);
-  const customList = Array.isArray(custom) ? custom : [];
-
-  // merge
-  const merged = [...base, ...customList.map(x=>({
-    ...x,
-    custom: true,
-    video: x.video || { provider: "youtube", youtubeId: parseYouTubeId(x.youtubeId) || null, searchQuery: x.searchQuery || (x.name_en || x.name_pt || "") }
-  }))];
-
-  const seen = new Set();
-  stretchItems = merged.filter(it => it && it.id && !seen.has(it.id) && (seen.add(it.id), true));
-
-  // apply overrides (key: item id)
-  const ov = getVideoOverrides();
-  stretchItems = stretchItems.map(it => {
-    const o = ov[it.id];
-    if (!o || !o.youtubeId) return it;
-    const v = it.video || { provider: "youtube", youtubeId: null, searchQuery: it.name_en || it.name_pt || it.id };
-    return { ...it, video: { ...v, youtubeId: o.youtubeId } };
-  });
-
-  // selection
-  const stored = loadJson(STORAGE.STRETCH_SELECTED, null);
-  if (Array.isArray(stored) && stored.length){
-    const valid = new Set(stretchItems.map(x=>x.id));
-    stretchSelected = new Set(stored.filter(id=>valid.has(id)));
-  } else {
-    stretchSelected = new Set(stretchItems.map(x=>x.id));
-  }
-  saveJson(STORAGE.STRETCH_SELECTED, Array.from(stretchSelected));
-
-  buildRegionOptions();
-}
-
-function buildRegionOptions(){
-  const regions = Array.from(new Set(stretchItems.map(i=>i.region).filter(Boolean))).sort();
-  els.bankRegionFilter.innerHTML = `<option value="all" selected>Todas</option>`;
-  regions.forEach(r => {
-    const opt = document.createElement("option");
-    opt.value = r;
-    opt.textContent = r;
-    els.bankRegionFilter.appendChild(opt);
-  });
-}
-
 // ---------------- Data: Judô bank ----------------
 async function loadJudoBank(){
   let base = [];
@@ -958,88 +906,77 @@ async function buildAlbertoSequence(){
   updateAlbertoPill();
 
   const steps = [];
-  // warm-up manual
-  steps.push({ type:"step", program:"alberto", manual:true, duration:0, side:"NONE", exerciseId:null,
-    item:{ name_pt:"Warm-up (Mobility)", region:s.albCycle, level:s.albPhase, video:{ provider:"youtube", youtubeId:null, searchQuery:"mobility warm up" } }
-  });
+  const weekProg = session.progressions ? (session.progressions[s.albWeek] || null) : null;
 
-  const weekKey = `week_${s.albWeek}`;
-  const prog = session.progression || {};
-  const weekProg = prog[weekKey] || null;
-
-  function resolveReps(ex){
-    if (ex.kind === "reps_progression" && weekProg && ex.reps_key && weekProg[ex.reps_key]){
-      const pr = weekProg[ex.reps_key];
-      return { sets: pr.sets, reps: pr.reps };
+  function resolveSetsAndReps(ex) {
+    if (ex.sets?.type === "progression" && weekProg && ex.sets.key && weekProg[ex.sets.key]) {
+      const p = weekProg[ex.sets.key];
+      return `${p.sets}x${p.reps}`;
     }
-    if (ex.kind === "reps") return { reps: ex.reps };
-    if (ex.kind === "reps_range") return { reps: `${ex.reps_min}-${ex.reps_max}` };
-    if (ex.kind === "reps_total") return { reps: `${ex.reps_total} total` };
-    if (ex.kind === "time") return { time: `${ex.time_sec}s` };
-    return {};
+    if (ex.sets?.type === "fixed") return `${ex.sets.sets}x`;
+    if (ex.target?.scheme === "reps") return `${ex.target.reps} reps`;
+    if (ex.target?.scheme === "reps_range") return `${ex.target.min}-${ex.target.max} reps`;
+    if (ex.target?.scheme === "time") return `${ex.target.seconds}s`;
+    return "";
   }
 
   function addExerciseStep(ex, contextLabel){
-    const exId = findAlbertoExerciseIdByName(ex.name) || null;
+    const exId = ex.exerciseId || findAlbertoExerciseIdByName(ex.exerciseName) || null;
     const key = exId ? `alberto:${exId}` : null;
     const yt = key ? getOverrideId(key) : null;
 
-    const r = resolveReps(ex);
+    const setsReps = resolveSetsAndReps(ex);
     const metaParts = [];
-    if (r.sets && r.reps) metaParts.push(`${r.sets}x${r.reps}`);
-    else if (r.reps) metaParts.push(`${r.reps}`);
-    else if (r.time) metaParts.push(r.time);
-    if (ex.load) metaParts.push(`Carga: ${ex.load}`);
+    if (setsReps) metaParts.push(setsReps);
+
+    if (ex.load?.type === "fixed") metaParts.push(`${ex.load.value}${ex.load.unit || "kg"}`);
+    if (ex.load?.type === "range") metaParts.push(`${ex.load.min}-${ex.load.max}${ex.load.unit || "kg"}`);
+    if (ex.load?.type === "bodyweight") metaParts.push("BW");
+
     if (ex.equipment) metaParts.push(ex.equipment);
 
     const item = {
       id: exId || undefined,
-      name_pt: ex.name,
+      name_pt: ex.exerciseName,
       region: s.albCycle,
       level: `${s.albPhase}${contextLabel ? ` • ${contextLabel}` : ""}`,
-      video: { provider:"youtube", youtubeId: yt || null, searchQuery: `${ex.name} exercício` }
+      video: { provider:"youtube", youtubeId: yt || null, searchQuery: `${ex.exerciseName} exercício` }
     };
 
-    if (ex.kind === "time" && ex.time_sec){
-      steps.push({ type:"step", program:"alberto", manual:false, duration: ex.time_sec, item, exerciseId: exId, side:"NONE" });
+    if (ex.target?.scheme === "time" && ex.target.seconds){
+      steps.push({ type:"step", program:"alberto", manual:false, duration: ex.target.seconds, item, exerciseId: exId, side:"NONE" });
     } else {
       steps.push({ type:"step", program:"alberto", manual:true, duration:0, item, exerciseId: exId, side:"NONE", hint: metaParts.join(" • ") });
     }
   }
 
   const blocks = Array.isArray(session.blocks) ? session.blocks : [];
-  for (const block of blocks){
-    if (block.type === "triset" || block.type === "biset"){
-      const exs = Array.isArray(block.exercises) ? block.exercises : [];
-      let rounds = block.rounds;
-      if (!rounds){
-        let inferred = 0;
-        exs.forEach(ex => {
-          const r = resolveReps(ex);
-          if (r.sets) inferred = Math.max(inferred, r.sets);
-        });
-        rounds = inferred || 1;
-      }
+  for (const block of blocks) {
+    const items = Array.isArray(block.items) ? block.items : [];
+    if (!items.length) continue;
 
-      for (let rr=1; rr<=rounds; rr++){
-        exs.forEach((ex, idx) => {
-          addExerciseStep(ex, `${block.name} • Série ${rr}/${rounds}`);
-          if (block.rest_between_exercises_sec && idx !== exs.length-1){
-            steps.push({ type:"rest", program:"alberto", duration:block.rest_between_exercises_sec, restLabel:"Troca" });
+    if (block.type === "warmup") {
+      items.forEach(ex => addExerciseStep(ex, block.name));
+    }
+
+    if (block.type === "triset" || block.type === "biset") {
+      const sets = items[0]?.sets;
+      const rounds = (sets?.type === "progression" && weekProg && sets.key) ? (weekProg[sets.key]?.sets || 1) : (sets?.sets || 1);
+
+      for (let r = 1; r <= rounds; r++) {
+        items.forEach((ex, idx) => {
+          addExerciseStep(ex, `${block.name} • Série ${r}/${rounds}`);
+          if (block.rest_between_exercises_sec && idx !== items.length - 1) {
+            steps.push({ type: "rest", program: "alberto", duration: block.rest_between_exercises_sec, restLabel: "Troca" });
           }
         });
-        if (block.rest_between_rounds_sec && rr !== rounds){
-          steps.push({ type:"rest", program:"alberto", duration:block.rest_between_rounds_sec, restLabel:"Descanso" });
-        }
       }
     }
 
     if (block.type === "amrap"){
-      const list = Array.isArray(block.exercises) ? block.exercises : [];
-      const desc = list.map(ex => {
-        const r = resolveReps(ex);
-        const reps = r.sets && r.reps ? `${r.sets}x${r.reps}` : (r.reps || "");
-        return `${ex.name}${reps ? ` (${reps})` : ""}`;
+      const desc = items.map(ex => {
+        const reps = resolveSetsAndReps(ex);
+        return `${ex.exerciseName}${reps ? ` (${reps})` : ""}`;
       }).join(" • ");
 
       steps.push({
@@ -1050,8 +987,8 @@ async function buildAlbertoSequence(){
         hint: desc
       });
 
-      if (block.rest_after_sec){
-        steps.push({ type:"rest", program:"alberto", duration:block.rest_after_sec, restLabel:"Descanso" });
+      if (block.post_rest_sec){
+        steps.push({ type:"rest", program:"alberto", duration:block.post_rest_sec, restLabel:"Descanso" });
       }
     }
   }
