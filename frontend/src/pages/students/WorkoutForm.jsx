@@ -144,6 +144,7 @@ export default function WorkoutForm() {
   const [bankQuery, setBankQuery]     = useState({ pre: '', post: '' });
   const [mobilityPre, setMobilityPre]   = useState([]);   // exercícios selecionados pré
   const [mobilityPost, setMobilityPost] = useState([]);   // exercícios selecionados pós
+  const [exercises, setExercises]       = useState([]);   // Available exercises from API
   const [form, setForm] = useState({
     name: '',
     mode: 'series',
@@ -178,6 +179,7 @@ export default function WorkoutForm() {
     const loadBank = Promise.all([
       api.getMobilityBank('pre'),
       api.getMobilityBank('post'),
+      api.getExercises({}),  // Fetch all available exercises
     ]);
     const loadForm = Promise.all([
       api.getPeriods(studentId),
@@ -186,9 +188,10 @@ export default function WorkoutForm() {
     ]);
 
     Promise.all([loadBank, loadForm])
-      .then(([[bPre, bPost], [p, w, mob]]) => {
+      .then(([[bPre, bPost, exs], [p, w, mob]]) => {
         setBankPre(bPre);
         setBankPost(bPost);
+        setExercises(exs);
         setPeriods(p);
 
         if (mob && mob.length) {
@@ -694,6 +697,29 @@ export default function WorkoutForm() {
                         <div className="form-group">
                           <label>
                             Nome do exercício *
+                            <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
+                              <select
+                                value=""
+                                onChange={(e) => {
+                                  if (e.target.value) {
+                                    const ex = exercises.find(x => x.id === e.target.value);
+                                    if (ex) {
+                                      setItemField(blockIdx, itemIdx, 'exercise_name')({ target: { value: ex.name } });
+                                      if (ex.youtube_id) setItemField(blockIdx, itemIdx, 'youtube_url')({ target: { value: `https://youtu.be/${ex.youtube_id}` } });
+                                    }
+                                  }
+                                }}
+                                className="filter-select"
+                                style={{ flex: 1 }}
+                              >
+                                <option value="">Selecionar exercício do banco...</option>
+                                {exercises.map(ex => (
+                                  <option key={ex.id} value={ex.id}>
+                                    {ex.name} {ex.muscle_group ? `(${ex.muscle_group})` : ''}
+                                  </option>
+                                ))}
+                              </select>
+                            </div>
                             <input
                               value={item.exercise_name}
                               onChange={setItemField(blockIdx, itemIdx, 'exercise_name')}

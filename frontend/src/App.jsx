@@ -12,6 +12,8 @@ import PeriodForm    from './pages/students/PeriodForm';
 import WorkoutForm   from './pages/students/WorkoutForm';
 import WorkoutRun    from './pages/students/WorkoutRun';
 import StudentHistory from './pages/students/StudentHistory';
+import ExercisesList from './pages/ExercisesList';
+import ExerciseForm  from './pages/ExerciseForm';
 
 function AppRoutes() {
   const auth = useAuth();
@@ -27,6 +29,30 @@ function AppRoutes() {
               element={
                 <PrivateRoute token={auth.token} loading={auth.loading}>
                   <Dashboard />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="exercises"
+              element={
+                <PrivateRoute token={auth.token} loading={auth.loading}>
+                  <ExercisesList />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="exercises/new"
+              element={
+                <PrivateRoute token={auth.token} loading={auth.loading}>
+                  <ExerciseForm />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="exercises/:id/edit"
+              element={
+                <PrivateRoute token={auth.token} loading={auth.loading}>
+                  <ExerciseForm />
                 </PrivateRoute>
               }
             />
