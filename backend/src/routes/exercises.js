@@ -6,13 +6,14 @@ const router = Router();
 
 // GET /api/exercises — listar (filtro por muscle_group, search por nome)
 router.get('/', (req, res) => {
-  const { muscleGroup, q } = req.query;
+  const { muscleGroup, muscle_group, q } = req.query;
+  const mg = muscleGroup || muscle_group; // Accept both camelCase and snake_case
   let whereClause = 'WHERE (is_public = 1 OR personal_id = ?)';
   let params = [req.auth.userId];
 
-  if (muscleGroup) {
+  if (mg) {
     whereClause += ' AND muscle_group = ?';
-    params.push(muscleGroup);
+    params.push(mg);
   }
 
   if (q) {
@@ -39,13 +40,24 @@ router.get('/:id', (req, res) => {
   res.json(ex);
 });
 
+// Helper to normalize field names (support both camelCase and snake_case)
+function normalizeFields(body) {
+  return {
+    name: body.name,
+    muscleGroup: body.muscleGroup || body.muscle_group,
+    defaultDurationS: body.defaultDurationS || body.default_duration_s,
+    youtubeId: body.youtubeId || body.youtube_id,
+    isPublic: body.isPublic !== undefined ? body.isPublic : body.is_public,
+  };
+}
+
 // POST /api/exercises — criar exercício (personal only)
 router.post('/', (req, res) => {
   if (req.auth.role !== 'personal') {
     return res.status(403).json({ error: 'Apenas personals podem criar exercícios' });
   }
 
-  const { name, muscleGroup, defaultDurationS, youtubeId, isPublic } = req.body;
+  const { name, muscleGroup, defaultDurationS, youtubeId, isPublic } = normalizeFields(req.body);
   if (!name?.trim()) return res.status(400).json({ error: 'Nome obrigatório' });
 
   const id = randomUUID();
@@ -77,7 +89,7 @@ router.put('/:id', (req, res) => {
     return res.status(403).json({ error: 'Acesso negado' });
   }
 
-  const { name, muscleGroup, defaultDurationS, youtubeId, isPublic } = req.body;
+  const { name, muscleGroup, defaultDurationS, youtubeId, isPublic } = normalizeFields(req.body);
   const now = new Date().toISOString();
 
   db.prepare(`
