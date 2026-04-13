@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { api } from '../../api/client';
+import { useApi } from '../../hooks/useApi';
 
 const AVG_SECONDS_PER_REP = 4;
 
@@ -135,6 +135,7 @@ function MobilitySection({ phase, title, items, bank, query, onQueryChange, onAd
 export default function WorkoutForm() {
   const { id: studentId, workoutId } = useParams();
   const navigate = useNavigate();
+  const api = useApi();
   const isEdit = Boolean(workoutId);
 
   const [periods, setPeriods]         = useState([]);

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import { api } from '../../api/client';
+import { useApi } from '../../hooks/useApi';
 
 function initials(name) {
   return name.split(' ').slice(0, 2).map(w => w[0]).join('').toUpperCase();
@@ -15,6 +15,7 @@ function formatDate(d) {
 export default function StudentDetail() {
   const { id }     = useParams();
   const navigate   = useNavigate();
+  const api = useApi();
   const [student, setStudent] = useState(null);
   const [workouts, setWorkouts] = useState([]);
   const [loading,  setLoading] = useState(true);

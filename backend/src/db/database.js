@@ -30,6 +30,16 @@ db.exec(`
     updated_at   TEXT NOT NULL DEFAULT (datetime('now'))
   );
 
+  CREATE TABLE IF NOT EXISTS users (
+    id            TEXT PRIMARY KEY,
+    email         TEXT UNIQUE NOT NULL,
+    password_hash TEXT NOT NULL,
+    role          TEXT NOT NULL CHECK(role IN ('personal', 'aluno')),
+    student_id    TEXT REFERENCES students(id) ON DELETE SET NULL,
+    created_at    TEXT NOT NULL DEFAULT (datetime('now')),
+    updated_at    TEXT NOT NULL DEFAULT (datetime('now'))
+  );
+
   CREATE TABLE IF NOT EXISTS training_periods (
     id         TEXT PRIMARY KEY,
     student_id TEXT NOT NULL REFERENCES students(id) ON DELETE CASCADE,
@@ -113,6 +123,18 @@ db.exec(`
     performed_load_kg REAL,
     notes           TEXT,
     created_at      TEXT NOT NULL DEFAULT (datetime('now'))
+  );
+
+  CREATE TABLE IF NOT EXISTS exercises (
+    id                    TEXT PRIMARY KEY,
+    name                  TEXT NOT NULL,
+    muscle_group          TEXT,
+    default_duration_s    INTEGER NOT NULL DEFAULT 30,
+    youtube_id            TEXT,
+    personal_id           TEXT REFERENCES users(id) ON DELETE CASCADE,
+    is_public             INTEGER NOT NULL DEFAULT 1,
+    created_at            TEXT NOT NULL DEFAULT (datetime('now')),
+    updated_at            TEXT NOT NULL DEFAULT (datetime('now'))
   );
 `);
 

@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { api } from '../../api/client';
+import { useApi } from '../../hooks/useApi';
 
 export default function PeriodForm() {
   const { id: studentId, periodId } = useParams();
   const navigate = useNavigate();
+  const api = useApi();
   const isEdit   = Boolean(periodId);
 
   const [form,    setForm]    = useState({ name: '', start_date: '', end_date: '', objective: '', is_active: true });

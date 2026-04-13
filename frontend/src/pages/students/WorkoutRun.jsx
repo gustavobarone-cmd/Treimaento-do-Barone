@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { api } from '../../api/client';
+import { useApi } from '../../hooks/useApi';
 
 function youtubeIdFromUrl(url) {
   if (!url) return null;
@@ -161,6 +161,7 @@ function fmt(sec) {
 export default function WorkoutRun() {
   const { id: studentId, workoutId } = useParams();
   const navigate = useNavigate();
+  const api = useApi();
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

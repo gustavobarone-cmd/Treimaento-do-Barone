@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { api } from '../../api/client';
+import { useApi } from '../../hooks/useApi';
 
 function initials(name) {
   return name.split(' ').slice(0, 2).map(w => w[0]).join('').toUpperCase();
@@ -16,13 +16,14 @@ export default function StudentList() {
   const [students, setStudents] = useState([]);
   const [loading,  setLoading]  = useState(true);
   const [error,    setError]    = useState(null);
+  const api = useApi();
 
   useEffect(() => {
     api.getStudents()
       .then(setStudents)
       .catch(e => setError(e.message))
       .finally(() => setLoading(false));
-  }, []);
+  }, [api]);
 
   if (loading) return <div className="loading">Carregando alunos...</div>;
   if (error)   return <div className="error-msg">{error}</div>;

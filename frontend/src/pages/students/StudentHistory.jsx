@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { api } from '../../api/client';
+import { useApi } from '../../hooks/useApi';
 
 function formatDateTime(iso) {
   if (!iso) return '';
@@ -131,6 +131,7 @@ function ExerciseChart({ rows, metric }) {
 
 export default function StudentHistory() {
   const { id } = useParams();
+  const api = useApi();
 
   const [student, setStudent]         = useState(null);
   const [workouts, setWorkouts]       = useState([]);

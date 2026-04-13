@@ -5,7 +5,21 @@ const db             = require('../db/database');
 const router = Router();
 
 // GET /api/students
-router.get('/', (_req, res) => {
+router.get('/', (req, res) => {
+  const { role, studentId } = req.auth; // do authMiddleware
+
+  // Se role = 'aluno', retorna só o aluno dele
+  if (role === 'aluno' && !studentId) {
+    return res.status(403).json({ error: 'Aluno sem student_id associado' });
+  }
+
+  let whereClause = '';
+  let params = [];
+  if (role === 'aluno') {
+    whereClause = 'WHERE s.id = ?';
+    params = [studentId];
+  }
+
   const rows = db.prepare(`
     SELECT s.*,
       (SELECT json_object(
@@ -17,8 +31,9 @@ router.get('/', (_req, res) => {
       WHERE p.student_id = s.id AND p.is_active = 1
       ORDER BY p.start_date DESC LIMIT 1) AS active_period
     FROM students s
+    ${whereClause}
     ORDER BY s.name COLLATE NOCASE
-  `).all();
+  `).all(...params);
 
   const students = rows.map(s => ({
     ...s,
