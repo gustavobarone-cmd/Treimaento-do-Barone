@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { useApi } from '../../hooks/useApi';
+import { useApi } from '../hooks/useApi';
 
 const muscleGroups = [
   'peito', 'costas', 'ombro', 'bíceps', 'tríceps', 'antebraço',
